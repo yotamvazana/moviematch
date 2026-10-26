@@ -63,7 +63,7 @@
       else { state = 'lobby'; deck = []; idx = 0; message('You’re in', 'Waiting for the TV to start the round.', { avatar: true }); }
     } else if (m.t === 'start') { deck = m.deck; idx = 0; matches = []; renderMatches(); enterPlay(); }
     else if (m.t === 'lobby') { state = 'lobby'; deck = []; idx = 0; message('Round over', 'Waiting for the TV to start a new one.', { avatar: true }); }
-    else if (m.t === 'match') { addMatch(m.movie); }
+    else if (m.t === 'match') { addMatch(m.movie, m.solo); }
     else if (m.t === 'full') { message('This round is full', 'The TV already has four players.'); }
   }
 
@@ -156,9 +156,10 @@
   function resetStamps(c) { c.querySelector('.stamp.l').style.opacity = 0; c.querySelector('.stamp.n').style.opacity = 0; }
 
   /* ---------- matches ---------- */
-  function addMatch(movie) {
+  function addMatch(movie, solo) {
     for (var i = 0; i < matches.length; i++) if (matches[i].id === movie.id) return;
     matches.push(movie); renderMatches();
+    document.querySelector('#toast .t1').textContent = solo ? 'Added to your picks' : 'It’s a match';
     $('toastImg').src = movie.poster; $('toastTitle').textContent = movie.title;
     $('toast').className = 'toast glass on';
     var b = $('matchBtn'); b.className = 'pill glass bump'; setTimeout(function () { b.className = 'pill glass'; }, 700);
@@ -171,7 +172,9 @@
     if (!matches.length) box.appendChild(el('div', 'empty', 'No matches yet. Keep swiping.'));
     matches.slice().reverse().forEach(function (m) {
       var r = el('div', 'm-row'); var img = el('img'); img.src = m.poster; img.alt = ''; r.appendChild(img);
-      r.appendChild(el('div', null, '<b>' + esc(m.title) + '</b><span>' + esc(m.year || '') + '</span>')); box.appendChild(r);
+      r.appendChild(el('div', null, '<b>' + esc(m.title) + '</b><span>' + esc([m.year, m.rating ? m.rating.toFixed(1) + ' rating' : ''].filter(Boolean).join('  \u00b7  ')) + '</span><p class="mo">' + esc(m.overview || 'No description available.') + '</p>'));
+      r.onclick = (function (row) { return function () { row.className = row.className.indexOf('open') > -1 ? 'm-row' : 'm-row open'; }; })(r);
+      box.appendChild(r);
     });
   }
   $('matchBtn').onclick = function () { $('sheet').className = 'sheet on'; };

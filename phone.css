@@ -88,7 +88,9 @@ html, body { height: 100%; background: var(--ink); color: var(--text); font-fami
 .sheet-card { width: 100%; max-height: 78%; overflow: auto; border-radius: 34px 34px 0 0; padding: 26px 20px calc(24px + env(safe-area-inset-bottom)); transform: translateY(100%); transition: transform .55s var(--spring); }
 .sheet.on .sheet-card { transform: none; }
 .sheet-h { font-size: 24px; font-weight: 700; letter-spacing: -.5px; margin-bottom: 16px; }
-.m-row { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.m-row { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px; cursor: pointer; }
+.m-row .mo { display: none; margin-top: 8px; font-size: 14px; line-height: 1.4; color: rgba(245,246,250,.8); }
+.m-row.open .mo { display: block; }
 .m-row img { width: 48px; height: 72px; border-radius: 10px; object-fit: cover; }
 .m-row b { font-size: 18px; display: block; line-height: 1.2; }
 .m-row span { font-size: 14px; color: var(--dim); }
