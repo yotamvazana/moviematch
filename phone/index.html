@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Movie Match</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#07070d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="phone.css">
+</head>
+<body>
+<div id="bg"><div id="bgA" class="bgimg"></div><div id="bgB" class="bgimg"></div><div class="blob b1"></div><div class="blob b2"></div></div>
+
+<div id="app">
+  <header id="head">
+    <div id="me" class="pill glass"><i id="meDot"></i><span id="meName">Movie Match</span></div>
+    <button id="matchBtn" class="pill glass" type="button"><span class="heart">&#9829;</span> <b id="matchN">0</b></button>
+  </header>
+
+  <main id="stage">
+    <div id="stack"></div>
+    <div id="msg" class="msg glass"><div id="msgTitle"></div><div id="msgText"></div><button id="msgBtn" class="btn" type="button">Try again</button></div>
+  </main>
+
+  <footer id="foot">
+    <button id="nope" class="round glass" type="button" aria-label="Pass"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M6 6l12 12M18 6L6 18" stroke="#ff7a8a" stroke-width="3" stroke-linecap="round" fill="none"/></svg></button>
+    <div id="count"></div>
+    <button id="like" class="round glass" type="button" aria-label="Like"><svg viewBox="0 0 24 24" width="34" height="34"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2z" fill="#6dffb0"/></svg></button>
+  </footer>
+</div>
+
+<div id="toast" class="toast glass"><img id="toastImg" alt=""><div><div class="t1">It&rsquo;s a match</div><div id="toastTitle" class="t2"></div></div></div>
+
+<div id="sheet" class="sheet"><div class="sheet-card glass"><div class="sheet-h">Your matches</div><div id="sheetList"></div><button id="sheetClose" class="btn alt" type="button">Close</button></div></div>
+
+<div id="join" class="join on">
+  <form id="joinForm" class="join-card glass" autocomplete="off">
+    <h1>Movie Match</h1>
+    <p>Swipe right on movies you&rsquo;d watch. When everyone agrees, it shows up on the TV.</p>
+    <input id="nameIn" type="text" maxlength="14" placeholder="Your name" autocapitalize="words" enterkeyhint="go">
+    <button class="btn" type="submit">Join</button>
+  </form>
+</div>
+
+<script src="link.js"></script>
+<script src="phone.js"></script>
+</body>
+</html>
